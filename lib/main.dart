@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practise_flutter/Bloc/posts_bloc/posts_bloc.dart';
+import 'package:practise_flutter/Bloc/quote_bloc/quote_bloc.dart';
 import 'package:practise_flutter/Cubit/ProductCubit/product_cubit.dart';
 import 'package:practise_flutter/Cubit/UserCubit/user_cubit.dart';
 import 'package:practise_flutter/Provider/counter_provider.dart';
@@ -8,11 +9,13 @@ import 'package:practise_flutter/Provider/posts_provider.dart';
 import 'package:practise_flutter/Provider/user_provider.dart';
 import 'package:practise_flutter/Repository/post_repository.dart';
 import 'package:practise_flutter/Repository/product_repository.dart';
+import 'package:practise_flutter/Repository/quote_repository.dart';
 import 'package:practise_flutter/Repository/user_repository.dart';
 import 'package:practise_flutter/Screen/posts.dart';
 import 'package:practise_flutter/Screen/posts_bloc.dart';
 import 'package:practise_flutter/Screen/products_screen_using_cubit.dart';
 import 'package:practise_flutter/Screen/provider_example.dart';
+import 'package:practise_flutter/Screen/quote_screen.dart';
 import 'package:practise_flutter/Screen/user_cubit_screen.dart';
 import 'package:practise_flutter/Screen/user_screen.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +33,7 @@ void main() {
           BlocProvider(create: (_) => UserCubit(UserRepository())),
           BlocProvider(create: (_) => ProductCubit(ProductRepository())),
           BlocProvider(create: (_) => PostsBloc(PostRepository())),
+          BlocProvider(create: (_) => QuoteBloc(QuoteRepository())),
         ],
         child: const MyApp(),
       ),
@@ -125,6 +129,16 @@ class MyHomePage extends StatelessWidget {
                 );
               },
               child: const Text("Go to Posts screen using Bloc"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const QuotesScreen()),
+                );
+              },
+              child: const Text("Go to Quotes Screen"),
             ),
           ],
         ),
