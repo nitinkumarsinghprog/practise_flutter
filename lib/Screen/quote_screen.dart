@@ -20,7 +20,13 @@ class _QuotesScreenState extends State<QuotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Quotes")),
+      appBar: AppBar(
+        title: const Text(
+          "Quotes",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.blueGrey,
+      ),
       body: BlocConsumer<QuoteBloc, QuoteState>(
         listener: (context, state) {
           if (state is QuoteError) {
@@ -42,6 +48,7 @@ class _QuotesScreenState extends State<QuotesScreen> {
 
                 return Card(
                   margin: const EdgeInsets.all(10),
+                  color: Colors.blue[100],
                   child: ListTile(
                     title: Text(quote.quote),
                     subtitle: Text(quote.author),
